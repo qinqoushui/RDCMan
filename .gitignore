@@ -3,3 +3,7 @@
 ################################################################################
 
 /bin/Debug
+/.vs/RDCMan/v16
+/.vs
+/Plugin.Password/bin/Debug
+/Plugin.Password/obj

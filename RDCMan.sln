@@ -1,9 +1,11 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 14.00
+Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29519.87
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RDCMan", "RDCMan.csproj", "{42229548-D7D0-4164-9EC6-97CC3F79E646}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.Password", "Plugin.Password\Plugin.Password.csproj", "{0959BCA8-6ABC-4F11-915A-D2A36392EFF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{42229548-D7D0-4164-9EC6-97CC3F79E646}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{42229548-D7D0-4164-9EC6-97CC3F79E646}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{42229548-D7D0-4164-9EC6-97CC3F79E646}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0959BCA8-6ABC-4F11-915A-D2A36392EFF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0959BCA8-6ABC-4F11-915A-D2A36392EFF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0959BCA8-6ABC-4F11-915A-D2A36392EFF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0959BCA8-6ABC-4F11-915A-D2A36392EFF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

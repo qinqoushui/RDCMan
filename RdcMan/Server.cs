@@ -760,6 +760,7 @@ namespace RdcMan
 							advancedSettings.ClearTextPassword = logonCredentials.Password.Value;
 						}
 						advancedSettings.keepAliveInterval = 60000;
+						advancedSettings.MinutesToIdleTimeout =MinutesToIdleTimeout;
 						advancedSettings2.HotKeyAltEsc = (int)Program.Preferences.HotKeyAltEsc;
 						advancedSettings2.HotKeyAltSpace = (int)Program.Preferences.HotKeyAltSpace;
 						advancedSettings2.HotKeyAltShiftTab = (int)Program.Preferences.HotKeyAltShiftTab;
