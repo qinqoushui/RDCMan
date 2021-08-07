@@ -10,6 +10,10 @@ namespace Extension
 {
     public interface IAES
     {
+        /// <summary>
+        /// 是否跳过系统原有加密
+        /// </summary>
+        bool SkipSysEncrypt { get; set; }
         byte[] Encrypt(byte[] data);
         byte[] Decrypt(byte[] data);
 

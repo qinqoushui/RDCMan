@@ -130,6 +130,7 @@ namespace RdcMan
 
         private static void CompleteInitialization()
         {
+            new Plugin.Password.PasswordHelper().PreLoad(TheForm);
             InstantiatePlugins();
             if (_filesToOpen.Count > 0)
             {
@@ -232,6 +233,7 @@ namespace RdcMan
                     }
                 }
             }
+            
             foreach (IPlugin item2 in from e in compositionContainer.GetExports<IPlugin>()
                                       select e.Value)
             {

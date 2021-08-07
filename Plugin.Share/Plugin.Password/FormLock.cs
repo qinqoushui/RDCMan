@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -32,6 +31,7 @@ namespace Plugin.Password
         {
             if (textBox1.Text == AES.Pwd)
             {
+                textBox1.Text = string.Empty;
                 this.DialogResult = DialogResult.OK;
             }
             else

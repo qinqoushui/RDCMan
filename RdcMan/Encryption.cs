@@ -178,6 +178,9 @@ namespace RdcMan
 
 		private unsafe static string EncryptStringUsingLocalUser(string plaintext)
 		{
+			if (Extension.AESXmlUtil.Instance.AES.SkipSysEncrypt)
+				return plaintext;
+
 			Crypto.DataBlob optionalEntropy = default(Crypto.DataBlob);
 			Crypto.CryptProtectPromptStruct promptStruct = default(Crypto.CryptProtectPromptStruct);
 			if (string.IsNullOrEmpty(plaintext))
@@ -243,7 +246,10 @@ namespace RdcMan
 
 		private unsafe static string DecryptStringUsingLocalUser(string encryptedString)
 		{
-			Crypto.DataBlob optionalEntropy = default(Crypto.DataBlob);
+			if (Extension.AESXmlUtil.Instance.AES.SkipSysEncrypt)
+				return encryptedString;
+
+            Crypto.DataBlob optionalEntropy = default(Crypto.DataBlob);
 			Crypto.CryptProtectPromptStruct promptStruct = default(Crypto.CryptProtectPromptStruct);
 			if (string.IsNullOrEmpty(encryptedString))
 			{
@@ -281,6 +287,7 @@ namespace RdcMan
 			{
 				return null;
 			}
+
 			RSACryptoServiceProvider rSACryptoServiceProvider = (RSACryptoServiceProvider)cert.PrivateKey;
 			byte[] bytes = rSACryptoServiceProvider.Decrypt(Convert.FromBase64String(encryptedString), fOAEP: false);
 			return Encoding.UTF8.GetString(bytes);

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -22,6 +21,8 @@ namespace Plugin.Password
 
         private void FormPassword_Shown(object sender, EventArgs e)
         {
+            this.Activate();
+            this.TopMost = true;
             textBox1.Focus();
             this.AcceptButton = button1;
             this.CancelButton = button2;

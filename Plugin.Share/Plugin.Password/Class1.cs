@@ -57,55 +57,55 @@ namespace Plugin.Password
 
         public void PreLoad(IPluginContext context, XmlNode xmlNode)
         {
-            //mainForm = context.MainForm as Form;
-            //var x = new AES();
-            //x.SetPassword = () =>
-            //  {
-            //      string tPwd = string.Empty;
-            //      checkPwd((succ, pwd) =>
-            //    {
-            //        x.SkipSysEncrypt = succ;
-            //        if (succ)
-            //        {
-            //            tPwd = pwd;
-            //        }
-            //        else
-            //        {
-            //            tPwd = string.Empty;
-            //        }
-            //    });
-            //      return tPwd;
-            //  };
-            //AESXmlUtil.Instance.AES = x;
-            //lckFrm.AES = x;
-            //var menu = context.MainForm.MainMenuStrip.Items["Tools"] as ToolStripMenuItem;
-            //menu.DropDownItems.Add("锁定", MenuNames.Tools).Click += (s, e) =>
-            //  {
-            //      Lock();
-            //  };
-            //menu.DropDownItems.Add("系统加密保存", MenuNames.Tools).Click += (s, e) =>
-            //{
-            //    //检验原密码
+            mainForm = context.MainForm as Form;
+            var x = new AES();
+            x.SetPassword = () =>
+              {
+                  string tPwd = string.Empty;
+                  checkPwd((succ, pwd) =>
+                {
+                    x.SkipSysEncrypt = succ;
+                    if (succ)
+                    {
+                        tPwd = pwd;
+                    }
+                    else
+                    {
+                        tPwd = string.Empty;
+                    }
+                });
+                  return tPwd;
+              };
+            AESXmlUtil.Instance.AES = x;
+            lckFrm.AES = x;
+            var menu = context.MainForm.MainMenuStrip.Items["Tools"] as ToolStripMenuItem;
+            menu.DropDownItems.Add("锁定", MenuNames.Tools).Click += (s, e) =>
+              {
+                  Lock();
+              };
+            menu.DropDownItems.Add("系统加密保存", MenuNames.Tools).Click += (s, e) =>
+            {
+                //检验原密码
 
-            //    x.SkipSysEncrypt = false;
-            //    x.Pwd = string.Empty;
-            //    context.MainForm.OnFileSave();
-            //};
-            //menu.DropDownItems.Add("自定义加密保存", MenuNames.Tools).Click += (s, e) =>
-            //{
-            //    checkPwd((succ, pwd) =>
-            //        {
-            //            if (succ)
-            //            {
-            //                x.SkipSysEncrypt = true;
-            //                x.Pwd = pwd;
-            //                //立即保存
-            //                context.MainForm.OnFileSave();
-            //            }
-            //        }
-            //    );
-            //};
-            //context.MainForm.FileClosed = () => x.Pwd = string.Empty;//文档关闭后清除密码
+                x.SkipSysEncrypt = false;
+                x.Pwd = string.Empty;
+                context.MainForm.OnFileSave();
+            };
+            menu.DropDownItems.Add("自定义加密保存", MenuNames.Tools).Click += (s, e) =>
+            {
+                checkPwd((succ, pwd) =>
+                    {
+                        if (succ)
+                        {
+                            x.SkipSysEncrypt = true;
+                            x.Pwd = pwd;
+                            //立即保存
+                            context.MainForm.OnFileSave();
+                        }
+                    }
+                );
+            };
+            context.MainForm.FileClosed = () => x.Pwd = string.Empty;//文档关闭后清除密码
             // MessageBox.Show("PreLoad", "Plugin.Password event", MessageBoxButtons.OK ,MessageBoxIcon.Information);
         }
 
@@ -120,7 +120,33 @@ namespace Plugin.Password
             //  MessageBox.Show("Shutdown", "Plugin.Password event", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-       
+        bool locked = false;
+
+        FormLock lckFrm = new FormLock();
+        void Lock()
+        {
+            locked = true;
+            if (lckFrm.ShowDialog(mainForm) == DialogResult.OK)
+            {
+                locked = false;
+            }
+            else
+            {
+                Application.Exit();
+            }
+        }
+
+        void checkPwd(Action<bool, string> afterCheck)
+        {
+            using (var f = new FormPassword().ChangeMode(false))
+            {
+                f.BringToFront();
+                f.Activate();
+                f.ShowInTaskbar = true;
+                f.TopMost = true;
+                afterCheck(f.ShowDialog() == DialogResult.OK, f.Pwd);
+            }
+        }
 
     }
 }

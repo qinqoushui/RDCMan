@@ -7,3 +7,5 @@
 /.vs
 /Plugin.Password/bin/Debug
 /Plugin.Password/obj
+/Plugin.Share/Plugin.Password/bin/Debug
+/Plugin.Share/Plugin.Password/obj

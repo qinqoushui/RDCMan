@@ -7,7 +7,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RDCMan", "RDCMan.csproj", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.Password", "Plugin.Password\Plugin.Password.csproj", "{0959BCA8-6ABC-4F11-915A-D2A36392EFF9}"
 EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Plugin.Share", "Plugin.Share\Plugin.Share.shproj", "{9E20507D-4848-4B24-992E-E9453C5664B8}"
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Plugin.Share\Plugin.Share.projitems*{42229548-d7d0-4164-9ec6-97cc3f79e646}*SharedItemsImports = 4
+		Plugin.Share\Plugin.Share.projitems*{9e20507d-4848-4b24-992e-e9453c5664b8}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
