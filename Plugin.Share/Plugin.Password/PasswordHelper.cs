@@ -74,6 +74,7 @@ namespace Plugin.Password
         void Lock()
         {
             locked = true;
+            lckFrm.TopMost = false;
             if (lckFrm.ShowDialog(mainForm) == DialogResult.OK)
             {
                 locked = false;
