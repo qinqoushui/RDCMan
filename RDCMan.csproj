@@ -485,9 +485,6 @@
     <EmbeddedResource Include="RdcMan\Resources.RDCMan.manifest" />
     <EmbeddedResource Include="RdcMan\Resources.smartgroup.ico" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
-  </ItemGroup>
   <Import Project="Plugin.Share\Plugin.Share.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

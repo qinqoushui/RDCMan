@@ -97,6 +97,7 @@ namespace Plugin.Password
             if (lckFrm.ShowDialog(mainForm) == DialogResult.OK)
             {
                 locked = false;
+                (mainForm as IMainForm).LastMouseMoveTime = DateTime.Now;
             }
             else
             {
