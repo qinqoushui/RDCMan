@@ -85,11 +85,6 @@ namespace RdcMan
             set;
         }
 
-        /// <summary>
-        /// 指定客户端在无需用户输入的情况下保持连接的最大时间长度（分钟）。 如果指定的时间已过，则该控件将调用 IMsTscAxEvents：： OnIdleTimeoutNotification 方法
-        /// </summary>
-        /// <see cref="https://docs.microsoft.com/zh-cn/windows/win32/termserv/imsrdpclientadvancedsettings-minutestoidletimeout"/>
-        public virtual int MinutesToIdleTimeout { get; set; } = 1;
 
         public abstract Server ServerNode
         {

@@ -26,6 +26,14 @@ namespace RdcMan
 		[Setting("loadBalanceInfo")]
 		public StringSetting LoadBalanceInfo { get; private set; }
 
+		/// <summary>
+		/// 指定客户端在无需用户输入的情况下保持连接的最大时间长度（分钟）。 如果指定的时间已过，则该控件将调用 IMsTscAxEvents：： OnIdleTimeoutNotification 方法
+		/// </summary>
+		/// <see cref="https://docs.microsoft.com/zh-cn/windows/win32/termserv/imsrdpclientadvancedsettings-minutestoidletimeout"/>
+		[Setting("minutesToIdleTimeout",DefaultValue =15)]
+		public IntSetting MinutesToIdleTimeout { get; set; }
+
+
 		static ConnectionSettings()
 		{
 			typeof(ConnectionSettings).GetSettingProperties(out _settingProperties);

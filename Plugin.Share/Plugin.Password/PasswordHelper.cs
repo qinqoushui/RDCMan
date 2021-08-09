@@ -11,28 +11,47 @@ namespace Plugin.Password
 {
     public class PasswordHelper
     {
+        private Timer timerLock;
+        public PasswordHelper()
+        {
+
+        }
 
         Form mainForm;
 
         public void PreLoad(IMainForm MainForm)
         {
+            timerLock = new Timer();
+            timerLock.Interval = 30000;
+            timerLock.Tick += (s, e) =>
+            {
+                if (!locked && DateTime.Now.Subtract(MainForm.LastMouseMoveTime).TotalMinutes > 15)
+                {
+                    Lock();
+                }
+                //else
+                //    Console.WriteLine(MainForm.LastMouseMoveTime.ToString("F"));
+            };
+            timerLock.Start();
+
+
             mainForm = MainForm as Form;
             var x = new AES();
             x.SetPassword = () =>
             {
                 string tPwd = string.Empty;
-                checkPwd(false,(succ, pwd) =>
-                {
-                    x.SkipSysEncrypt = succ;
-                    if (succ)
-                    {
-                        tPwd = pwd;
-                    }
-                    else
-                    {
-                        tPwd = string.Empty;
-                    }
-                });
+                checkPwd(false, (succ, pwd) =>
+                 {
+                     x.SkipSysEncrypt = succ;
+                     if (succ)
+                     {
+                         tPwd = pwd;
+                     }
+                     else
+                     {
+                         tPwd = string.Empty;
+                     }
+                 });
                 return tPwd;
             };
             AESXmlUtil.Instance.AES = x;
@@ -52,19 +71,19 @@ namespace Plugin.Password
             };
             menu.DropDownItems.Add("自定义加密保存", MenuNames.Tools).Click += (s, e) =>
             {
-                checkPwd(true,(succ, pwd) =>
-                {
-                    if (succ)
-                    {
-                        x.SkipSysEncrypt = true;
-                        x.Pwd = pwd;
-                        //立即保存
+                checkPwd(true, (succ, pwd) =>
+                 {
+                     if (succ)
+                     {
+                         x.SkipSysEncrypt = true;
+                         x.Pwd = pwd;
+                         //立即保存
                          MainForm.OnFileSave();
-                    }
-                }
+                     }
+                 }
                 );
             };
-             MainForm.FileClosed = () => x.Pwd = string.Empty;//文档关闭后清除密码
+            MainForm.FileClosed = () => x.Pwd = string.Empty;//文档关闭后清除密码
             // MessageBox.Show("PreLoad", "Plugin.Password event", MessageBoxButtons.OK ,MessageBoxIcon.Information);
         }
 

@@ -14,7 +14,6 @@ namespace RdcMan
 
         DateTime LastMouseMoveTime { get; set; }
 
-        int MinutesToIdleTimeout { get; set; }
         void OnFileSave();
         Action FileClosed { get; set; }
 
