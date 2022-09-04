@@ -85,6 +85,8 @@ namespace RdcMan
         {
             using (Helpers.Timer("reading {0}", filename))
             {
+                if (!System.IO.File.Exists(filename))
+                    return null;
                 XmlDocument xmlDocument = new XmlDocument();
                 XmlNode topNode;
                 using (Stream fs = new MemoryStream(AESXmlUtil.Instance.ReadFile(filename)))

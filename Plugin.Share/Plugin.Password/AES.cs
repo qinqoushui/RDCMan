@@ -33,8 +33,7 @@ namespace Plugin.Password
             }
             if (string.IsNullOrWhiteSpace(Pwd))
             {
-                System.Windows.Forms.MessageBox.Show("未输入密码，文件不会加解密");
-                return data;
+                throw new FileLoadException("未输入密码，文件不能解密");
             }
             else
                 try

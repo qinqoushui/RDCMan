@@ -25,7 +25,7 @@ namespace Plugin.Password
             timerLock.Interval = 30000;
             timerLock.Tick += (s, e) =>
             {
-                if (!locked && DateTime.Now.Subtract(MainForm.LastMouseMoveTime).TotalMinutes > 15)
+                if (!locked && DateTime.Now.Subtract(MainForm.LastMouseMoveTime).TotalMinutes > 60)
                 {
                     Lock();
                 }
